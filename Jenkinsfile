@@ -31,7 +31,7 @@ pipeline {
         agent{label 'DockerDep5'}
         steps {
           sh '''#!/bin/bash
-
+            docker build -t kerrismithkura/deployment5:latest .
           '''
        }
     }
@@ -39,7 +39,7 @@ pipeline {
         agent{label 'DockerDep5'}
         steps {
           sh '''#!/bin/bash
-
+            docker push kerrismithkura/deployment5:latest
           '''
         } 
     }

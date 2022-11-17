@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
   [
   {
       "name": "url-container",
-      "image": "kerrismithkura/urlshrt_unicorn:latest",
+      "image": "kerrismithkura/deployment5:latest",
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
