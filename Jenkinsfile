@@ -4,6 +4,7 @@ pipeline {
     stage ('Build') {
       steps {
         sh '''#!/bin/bash
+        cd Application
         python3 -m venv test3
         source test3/bin/activate
         pip install pip --upgrade
@@ -37,11 +38,9 @@ pipeline {
     }
     stage ('Push to Dockerhub') {
         agent{label 'DockerDep5'}
-        steps {
-          sh '''#!/bin/bash
-            docker push kerrismithkura/deployment5:latest
-          '''
-        } 
+        withDockerRegistry([ credentialsId: "DockerHubKey", url: "" ]) {
+        dockerImage.push()
+        }
     }
     stage ('Deploy to ECS init') {
         agent{label 'TerraformDep5'}
