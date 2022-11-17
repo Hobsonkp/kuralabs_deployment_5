@@ -38,8 +38,10 @@ pipeline {
     }
     stage ('Push to Dockerhub') {
         agent{label 'DockerDep5'}
+        steps {
         withDockerRegistry([ credentialsId: "DockerHubKey", url: "" ]) {
         dockerImage.push()
+        }
         }
     }
     stage ('Deploy to ECS init') {
