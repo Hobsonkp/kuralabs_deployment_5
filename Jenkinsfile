@@ -17,6 +17,7 @@ pipeline {
     stage ('test') {
       steps {
         sh '''#!/bin/bash
+        cd Application
         source test3/bin/activate
         py.test --verbose --junit-xml test-reports/results.xml
         ''' 
