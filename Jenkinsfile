@@ -42,7 +42,7 @@ pipeline {
         agent{label 'DockerDep5'}
         steps {
          sh '''#!/bin/bash
-            docker push -t kerrismithkura/deployment5:latest
+            docker push kerrismithkura/deployment5:latest
           '''
         }
     }
