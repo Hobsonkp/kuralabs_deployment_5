@@ -33,6 +33,7 @@ pipeline {
         agent{label 'DockerDep5'}
         steps {
           sh '''#!/bin/bash
+             sudo chmod 666 /var/run/docker.sock
             docker build -t kerrismithkura/deployment5:latest .
           '''
        }
