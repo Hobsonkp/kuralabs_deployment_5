@@ -62,6 +62,18 @@ pipeline {
         } 
     }
 
+        stage ('Destroy ECS') {
+        agent{label 'TerraformDep5'}
+        steps {
+         withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
+                        string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
+                            dir('intTerraform') {
+                              sh 'terraform destroy' 
+                            }
+            }
+        } 
+    }
+
     stage ('Deploy to ECS plan') {
         agent{label 'TerraformDep5'}
         steps {
