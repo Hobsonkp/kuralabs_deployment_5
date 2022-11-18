@@ -1,5 +1,9 @@
 pipeline {
   agent any
+
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred-raja')
+	}
    stages {
     stage ('Build') {
       steps {
@@ -40,7 +44,6 @@ pipeline {
     stage ('Push to Dockerhub') {
         agent{label 'DockerDep5'}
         steps {
-         DOCKERHUB_CREDENTIALS=credentials('DockerHubKey')
          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
          sh '''#!/bin/bash
             docker push kerrismithkura/deployment5:latest
